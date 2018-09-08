@@ -1,0 +1,22 @@
+
+.details {
+  display: flex;
+
+  .user-picture {
+    width: 140px;
+    flex-shrink: 0;
+    img {
+      width: 140px;
+    }
+  }
+
+
+  .username-desc {
+    font-size: 2em;
+  }
+
+  .user-description {
+    padding: 20px;
+  }
+
+}

@@ -1,0 +1,27 @@
+.chat {
+  display: flex;
+
+
+  .main-box {
+    background: #d7dfe7;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contacts-box {
+    width: 330px;
+    flex-shrink: 0;
+    background: white;
+  }
+
+  .chat-messages {
+    height: 360px;
+    overflow-y: auto;
+  }
+
+  .chat-form {
+    padding: 10px 12px;
+
+  }
+
+}
