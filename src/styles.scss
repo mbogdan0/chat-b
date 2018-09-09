@@ -1,5 +1,44 @@
 body {
   background: #586670;
+  font-family: "-apple-system",BlinkMacSystemFont,Arial,sans-serif;
+  font-size: 14px;
   margin: 0;
   padding: 0;
+}
+
+
+.row-form {
+  width: 500px;
+  display: flex;
+  padding: 6px 0;
+  .row-label {
+    width: 170px;
+    flex-shrink: 0;
+    padding: 4px 0;
+  }
+  .row-value {
+    flex-grow: 2;
+  }
+}
+
+.text-form {
+  padding: 4px 6px;
+  font-size: 1rem;
+  width: 100%;
+  border-radius: 2px;
+  border: 1px solid #74b9ef;
+  box-shadow: 1px 1px 2px -1px #74b9ef;
+}
+
+.form-button {
+  padding: 3px 16px;
+  background: #428bca;
+  border: 1px solid #357ebc;
+  border-radius: 3px;
+  color: white;
+  font-size: 0.93rem;
+  &:hover {
+    cursor: pointer;
+    background: #357ebc;
+  }
 }

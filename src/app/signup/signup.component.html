@@ -1,0 +1,41 @@
+<div class="signup">
+
+  <form novalidate autocomplete="off" [formGroup]="registerForm" (submit)="onSubmit()">
+
+    <div class="row-form">
+      <div class="row-label">
+        Email address
+      </div>
+      <div class="row-value">
+        <input type="email" class="text-form" formControlName="email" />
+      </div>
+    </div>
+
+    <div class="row-form">
+      <div class="row-label">
+        Username
+      </div>
+      <div class="row-value">
+        <input type="text" class="text-form" formControlName="username" />
+      </div>
+    </div>
+
+    <div class="row-form">
+      <div class="row-label">
+        New password
+      </div>
+      <div class="row-value">
+        <input type="password" class="text-form" formControlName="password" />
+      </div>
+    </div>
+
+    <div class="row-form">
+      <div class="row-label"></div>
+      <div class="row-value">
+        <input type="button" class="form-button" value="Sign up" />
+      </div>
+    </div>
+
+
+  </form>
+</div>

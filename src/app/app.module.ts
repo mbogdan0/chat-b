@@ -8,6 +8,10 @@ import { SelectedDetailComponent } from './chat/selected-detail/selected-detail.
 import { ChatFormComponent } from './chat/chat-form/chat-form.component';
 import { ChatMessagesComponent } from './chat/chat-messages/chat-messages.component';
 import { ChatComponent } from './chat/chat.component';
+import { AppRoutingModule } from './app-routing.module';
+import { SignupComponent } from './signup/signup.component';
+import {WebsocketModule} from './websocket';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,10 +21,17 @@ import { ChatComponent } from './chat/chat.component';
     SelectedDetailComponent,
     ChatFormComponent,
     ChatMessagesComponent,
-    ChatComponent
+    ChatComponent,
+    SignupComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    WebsocketModule.config({
+      url: 'ws://localhost:4201'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
