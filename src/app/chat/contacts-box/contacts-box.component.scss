@@ -1,5 +1,6 @@
 .tabs {
   display: flex;
+  margin-bottom: 4px;
   .tab {
     width: 165px;
     padding: 10px 0;
@@ -20,4 +21,11 @@
       border: none;
     }
   }
+}
+
+
+
+.contacts-data {
+  max-height: 495px;
+  overflow-y: auto;
 }

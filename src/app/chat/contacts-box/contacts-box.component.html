@@ -1,9 +1,19 @@
 <div class="tabs">
-  <div class="tab active">
+  <div class="tab"
+       [ngClass]="{'active': onlineOnly}"
+       (click)="onlineOnly = !onlineOnly"
+  >
     Online
   </div>
-  <div class="tab">
+  <div class="tab"
+       [ngClass]="{'active': !onlineOnly}"
+       (click)="onlineOnly = !onlineOnly"
+  >
     All
   </div>
 </div>
 
+
+<div class="contacts-data" *ngFor="let contact of contacts; trackBy: trackByFn">
+  <app-contact [data]="contact" (activate)="makeActive($event)"></app-contact>
+</div>

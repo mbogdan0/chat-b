@@ -1,0 +1,14 @@
+<div class="contact"
+     [ngClass]="{'active': data.active}"
+     (click)="makeActive()"
+>
+  <div class="picture">
+    <img [src]="data.picture">
+  </div>
+  <div class="details">
+    <div class="username">{{data.username | ctext:20}}</div>
+    <div class="lastmsg">
+      {{data.lastmsg | ctext:65}}
+    </div>
+  </div>
+</div>
