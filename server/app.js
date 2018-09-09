@@ -1,5 +1,3 @@
-const {generateToken} = require("./api/jwt");
-
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
@@ -16,11 +14,9 @@ const config = {
 
 
 app.listen(3004,  () => {
-  console.log('Example app listening on port 3004!');
-  mongoose.connect('mongodb://localhost:27017/tt-mean', config).then(() => {
-    console.log('MongoDB is OK');
-
-    require('./helper')(); // fill DB
+  console.log('App listening on port 3004!');
+  mongoose.connect('mongodb://localhost:27017/chat-b', config).then(() => {
+    console.log('MongoDB is running on port 27017');
   }).catch(err => {
     console.error(err);
   });
