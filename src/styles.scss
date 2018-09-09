@@ -22,8 +22,8 @@ body {
 }
 
 .text-form {
-  padding: 4px 6px;
-  font-size: 1rem;
+  padding: 6px 8px;
+  font-size: 0.96rem;
   width: 100%;
   border-radius: 2px;
   border: 1px solid #74b9ef;
@@ -31,12 +31,12 @@ body {
 }
 
 .form-button {
-  padding: 3px 16px;
+  padding: 6px 16px;
   background: #428bca;
   border: 1px solid #357ebc;
   border-radius: 3px;
   color: white;
-  font-size: 0.93rem;
+  font-size: 0.96rem;
   &:hover {
     cursor: pointer;
     background: #357ebc;

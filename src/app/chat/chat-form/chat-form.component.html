@@ -1,8 +1,10 @@
-<div class="message-input">
-  <input type="text" class="data" />
-</div>
-<div class="message-button">
-  <button>Send message</button>
-</div>
 
-{{isLoggedIn | json}}
+
+<div class="chat-form" *ngIf="isLoggedIn">
+  <div class="message-input">
+    <input type="text" class="text-form" />
+  </div>
+  <div class="message-button">
+    <input type="submit" class="form-button" value="Send message">
+  </div>
+</div>
