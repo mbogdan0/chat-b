@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+    this.isLoggedIn = this.authService.isLoggedIn;
     this.chRef.detectChanges();
   }
 

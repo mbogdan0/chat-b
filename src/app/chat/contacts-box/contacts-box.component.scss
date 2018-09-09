@@ -1,0 +1,23 @@
+.tabs {
+  display: flex;
+  .tab {
+    width: 165px;
+    padding: 10px 0;
+    text-align: center;
+    color: #555;
+    background: #f8f8f8;
+    border: 1px solid #dddddd;
+    border-top: none;
+    cursor: pointer;
+    &:nth-child(1) {
+      border-left: none;
+    }
+    &:nth-child(2) {
+      border-right: none;
+    }
+    &.active {
+      background: white;
+      border: none;
+    }
+  }
+}
