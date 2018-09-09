@@ -1,4 +1,16 @@
-
 <div class="header">
   <h1>Chat Bots 2.0</h1>
+
+  <div>
+
+    <a routerLink="/signup"
+      *ngIf="!isLoggedIn">Sign up</a> or
+    <a routerLink="/signin"
+       *ngIf="!isLoggedIn">Sign in</a>
+
+
+    <a (click)="logout()"
+       *ngIf="isLoggedIn">Log out</a>
+
+  </div>
 </div>

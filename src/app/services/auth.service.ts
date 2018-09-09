@@ -22,7 +22,10 @@ export class AuthService {
     const now = Date.now();
     return (token && exp && now < +exp);
   }
-
+  public logout(): void {
+    localStorage.removeItem(env.tokenStorage.fieldExp);
+    localStorage.removeItem(env.tokenStorage.fieldVal);
+  }
   public get token(): string {
     return localStorage.getItem(env.tokenStorage.fieldVal);
   }

@@ -1,13 +1,24 @@
 <div class="signup">
 
   <form novalidate autocomplete="off" [formGroup]="registerForm" (submit)="onSubmit()">
-
+    <h2>Sign Up Form</h2>
+    <div *ngIf="errorMsg" class="error-msg">{{errorMsg}}</div>
     <div class="row-form">
       <div class="row-label">
         Email address
       </div>
       <div class="row-value">
         <input type="email" class="text-form" formControlName="email" />
+
+        <div class="error-field"
+             *ngIf="submitted && registerForm.controls.email.errors?.required">
+          Please fill the Email field
+        </div>
+        <div class="error-field"
+             *ngIf="submitted && registerForm.controls.email.errors?.email && (!registerForm.controls.email.errors?.required)">
+          Please enter the correct Email
+        </div>
+
       </div>
     </div>
 
@@ -17,6 +28,12 @@
       </div>
       <div class="row-value">
         <input type="text" class="text-form" formControlName="username" />
+
+        <div class="error-field"
+             *ngIf="submitted && registerForm.controls.username.errors?.required">
+          Please fill the Username field
+        </div>
+
       </div>
     </div>
 
@@ -26,13 +43,19 @@
       </div>
       <div class="row-value">
         <input type="password" class="text-form" formControlName="password" />
+
+        <div class="error-field"
+             *ngIf="submitted && registerForm.controls.password.errors?.required">
+          Please fill the Password field
+        </div>
+
       </div>
     </div>
 
     <div class="row-form">
       <div class="row-label"></div>
       <div class="row-value">
-        <input type="button" class="form-button" value="Sign up" />
+        <input type="submit" class="form-button" value="Sign up" />
       </div>
     </div>
 

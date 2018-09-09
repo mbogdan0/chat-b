@@ -1,18 +1,15 @@
 import {ChangeDetectorRef, Component} from '@angular/core';
-import {WebsocketService} from '../websocket';
 import {FormBuilder, Validators} from '@angular/forms';
 import {UserService} from '../services/user.service';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss'],
-  providers: [WebsocketService, UserService]
+  selector: 'app-signin',
+  templateUrl: './signin.component.html',
+  styleUrls: ['./signin.component.scss']
 })
-export class SignupComponent {
-  public registerForm: any;
-  public submitted = false;
+export class SigninComponent {
+  public loginForm: any;
   public errorMsg: string;
   constructor (
     private fb: FormBuilder,
@@ -20,22 +17,19 @@ export class SignupComponent {
     private router: Router,
     private chRef: ChangeDetectorRef
   ) {
-
-    this.registerForm = this.fb.group({
-      email: ['', [<any>Validators.required, <any>Validators.email]],
+    this.loginForm = this.fb.group({
       username: ['', [<any>Validators.required]],
       password: ['', [<any>Validators.required]]
     }, { });
-
   }
-
   onSubmit() {
-    this.submitted = true;
-    if (this.registerForm.valid) {
-      this.userService.signup(this.registerForm.value).subscribe(() => {
+    if (this.loginForm.valid) {
+      this.errorMsg = null;
+      this.userService.login(this.loginForm.value).subscribe(() => {
         this.chRef.detectChanges();
         this.router.navigate(['/']);
       }, err => {
+        // TODO: implement better error handling
         if (err.error && err.error.message) {
           this.errorMsg = err.error.message;
         } else {
@@ -44,5 +38,4 @@ export class SignupComponent {
       });
     }
   }
-
 }

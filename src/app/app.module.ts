@@ -12,6 +12,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { SignupComponent } from './signup/signup.component';
 import {WebsocketModule} from './websocket';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import { SigninComponent } from './signin/signin.component';
 
 @NgModule({
   declarations: [
@@ -22,13 +24,15 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     ChatFormComponent,
     ChatMessagesComponent,
     ChatComponent,
-    SignupComponent
+    SignupComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     WebsocketModule.config({
       url: 'ws://localhost:4201'
     })

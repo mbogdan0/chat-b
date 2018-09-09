@@ -26,4 +26,13 @@ export class UserService {
       })
     );
   }
+  public login(form: any): Observable<any> {
+    return this.http.post(`${ this.path }/signin`, form).pipe(
+      tap((body: any) => {
+        if (body.token) {
+          this.authService.setToken(body.token, body.expires);
+        }
+      })
+    );
+  }
 }

@@ -1,0 +1,35 @@
+<div class="signin">
+
+
+  <form novalidate autocomplete="off" [formGroup]="loginForm" (submit)="onSubmit()">
+    <h2>Sign In Form</h2>
+    <div *ngIf="errorMsg" class="error-msg">{{errorMsg}}</div>
+    <div class="row-form">
+      <div class="row-label">
+        Username
+      </div>
+      <div class="row-value">
+        <input type="text" class="text-form" formControlName="username" />
+
+      </div>
+    </div>
+
+    <div class="row-form">
+      <div class="row-label">
+        Password
+      </div>
+      <div class="row-value">
+        <input type="password" class="text-form" formControlName="password" />
+      </div>
+    </div>
+
+    <div class="row-form">
+      <div class="row-label"></div>
+      <div class="row-value">
+        <input type="submit" class="form-button" value="Sign in" />
+      </div>
+    </div>
+
+
+  </form>
+</div>
