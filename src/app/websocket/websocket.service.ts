@@ -12,16 +12,20 @@ export class WebsocketService implements OnDestroy {
    private socket;
 
    constructor (private authService: AuthService) {
-     this.socket = io(environment.socketUrl, {
-       query: `token=${this.authService.token}`
-     });
+     this.init();
    }
-
+   init() { // to be able re-init socket if token is changed
+     if (this.socket) {
+       this.socket.disconnect();
+     }
+     const config: any = {};
+     if (this.authService.token) { // pass token as query
+       config.query = `token=${this.authService.token}`;
+     }
+     this.socket = io(environment.socketUrl, config);
+   }
    ngOnDestroy() {
      this.socket.disconnect();
-     this.socket.on('connect', () => {
-       console.log('Socket is connected');
-     });
    }
 
    listen(event: string): Observable<Contact[]> {

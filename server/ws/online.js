@@ -17,9 +17,10 @@ class onlineUsers {
   }
 
   addOnline(socketID, query) {
-    if (query && query.token) { // if token is set - we can decode user's ID
+    if (query && query.token) { // if token is set - we can get user's ID
       return this.__decodeToken(socketID, query);
     } else {
+      return Promise.resolve(true);
       //return this.addData(socketID, null); // as guest
     }
   }

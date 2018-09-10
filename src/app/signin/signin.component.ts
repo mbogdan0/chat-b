@@ -1,7 +1,8 @@
-import {ChangeDetectorRef, Component} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {UserService} from '../services/user.service';
 import {Router} from '@angular/router';
+import {WebsocketService} from '../websocket';
 
 @Component({
   selector: 'app-signin',
@@ -15,18 +16,18 @@ export class SigninComponent {
     private fb: FormBuilder,
     private userService: UserService,
     private router: Router,
-    private chRef: ChangeDetectorRef
+    private websocketService: WebsocketService
   ) {
     this.loginForm = this.fb.group({
-      username: ['', [<any>Validators.required]],
-      password: ['', [<any>Validators.required]]
+      username: ['21bgdn', [<any>Validators.required]],
+      password: ['123321', [<any>Validators.required]]
     }, { });
   }
   onSubmit() {
     if (this.loginForm.valid) {
       this.errorMsg = null;
       this.userService.login(this.loginForm.value).subscribe(() => {
-        this.chRef.detectChanges();
+        this.websocketService.init();
         this.router.navigate(['/']);
       }, err => {
         // TODO: implement better error handling

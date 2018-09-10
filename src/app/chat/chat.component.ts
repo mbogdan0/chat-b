@@ -16,6 +16,7 @@ export class ChatComponent implements OnInit {
   constructor(private wsService: WebsocketService) { }
 
   ngOnInit() {
+    console.log('initttt')
     this.onlineContacts$ = this.wsService.listen('online-contacts');
     this.onlineContacts$.subscribe(data => {
       this.onlineContacts = this.selectFirstContact(data);

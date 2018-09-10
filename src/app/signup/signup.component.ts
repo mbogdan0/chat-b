@@ -17,7 +17,8 @@ export class SignupComponent {
   constructor (
     private fb: FormBuilder,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private websocketService: WebsocketService
   ) {
 
     this.registerForm = this.fb.group({
@@ -32,8 +33,8 @@ export class SignupComponent {
     this.submitted = true;
     if (this.registerForm.valid) {
       this.userService.signup(this.registerForm.value).subscribe(() => {
-
-        this.router.navigate(['/'], {replaceUrl: true});
+        this.websocketService.init();
+        this.router.navigate(['/']);
       }, err => {
         if (err.error && err.error.message) {
           this.errorMsg = err.error.message;
