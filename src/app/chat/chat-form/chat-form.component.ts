@@ -8,12 +8,10 @@ import {AuthService} from '../../services/auth.service';
   providers: [AuthService]
 })
 export class ChatFormComponent implements OnInit {
-  public isLoggedIn: boolean;
-
   constructor(private authService: AuthService) { }
+  ngOnInit() { }
 
-  ngOnInit() {
-    this.isLoggedIn = this.authService.isLoggedIn;
+  isLoggedIn() {
+    return this.authService.isLoggedIn;
   }
-
 }

@@ -3,15 +3,14 @@
     <h1>Chat bots 2.0</h1>
   </a>
 
-
   <div>
-    <a routerLink="/signup"
-      *ngIf="!isLoggedIn">Sign up</a> or
-    <a routerLink="/signin"
-       *ngIf="!isLoggedIn">Sign in</a>
+    <ng-container *ngIf="!isLoggedIn(); else loggedIn">
+      <a routerLink="/signup">Sign up</a> or
+      <a routerLink="/signin">Sign in</a>
+    </ng-container>
 
-
-    <a (click)="logout()"
-       *ngIf="isLoggedIn">Log out</a>
+    <ng-template #loggedIn>
+      <a (click)="logout()">Log out</a>
+    </ng-template>
   </div>
 </div>

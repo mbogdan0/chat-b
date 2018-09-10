@@ -20,7 +20,7 @@ class onlineUsers {
     if (query && query.token) { // if token is set - we can decode user's ID
       return this.__decodeToken(socketID, query);
     } else {
-      return this.addData(socketID, null); // as guest
+      //return this.addData(socketID, null); // as guest
     }
   }
 
@@ -30,8 +30,8 @@ class onlineUsers {
         this.addData(socketID, uid);
         resolve(true);
       }).catch(err => { // invalid token or smth
-        console.error(err);
-        this.addData(socketID, null); // as guest
+        // console.error(err);
+        //this.addData(socketID, null); // as guest
         resolve(true);
       });
     });

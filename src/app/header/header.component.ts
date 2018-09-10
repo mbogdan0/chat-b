@@ -1,5 +1,6 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {AuthService} from '../services/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,21 +8,21 @@ import {AuthService} from '../services/auth.service';
   styleUrls: ['./header.component.scss'],
   providers: [AuthService]
 })
-export class HeaderComponent implements OnInit {
-  public isLoggedIn: boolean;
+export class HeaderComponent {
+
   constructor(
     private authService: AuthService,
-    private chRef: ChangeDetectorRef
+    private chRef: ChangeDetectorRef,
+    private router: Router
   ) { }
 
-  ngOnInit() {
-    this.isLoggedIn = this.authService.isLoggedIn;
+  isLoggedIn() {
+    return this.authService.isLoggedIn;
   }
 
   logout() {
     this.authService.logout();
-    this.isLoggedIn = this.authService.isLoggedIn;
-    this.chRef.detectChanges();
+    this.router.navigate(['/'], { replaceUrl: true});
   }
 
 }

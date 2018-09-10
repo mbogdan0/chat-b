@@ -6,6 +6,16 @@ body {
   padding: 0;
 }
 
+a {
+  color: #263658;
+  text-decoration: underline;
+  &:hover {
+    text-decoration: none;
+    color: #1C459C;
+    cursor: pointer;
+  }
+}
+
 
 .row-form {
   width: 470px;
@@ -28,6 +38,9 @@ body {
   border-radius: 2px;
   border: 1px solid #74b9ef;
   box-shadow: 1px 1px 2px -1px #74b9ef;
+  &:disabled {
+    cursor: default;
+  }
 }
 
 .form-button {
@@ -40,5 +53,8 @@ body {
   &:hover {
     cursor: pointer;
     background: #357ebc;
+  }
+  &:disabled {
+    cursor: default;
   }
 }

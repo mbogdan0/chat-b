@@ -11,8 +11,7 @@
   <div class="details">
     <div class="username">{{data.username | ctext:20}}</div>
     <div class="lastmsg">
-      {{data.lastmsg | ctext:65}}
-      here
+      {{(data.lastmsg | ctext:65) || 'No messages yet'}}
     </div>
   </div>
 </div>

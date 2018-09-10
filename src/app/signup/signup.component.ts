@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component} from '@angular/core';
+import {Component} from '@angular/core';
 import {WebsocketService} from '../websocket';
 import {FormBuilder, Validators} from '@angular/forms';
 import {UserService} from '../services/user.service';
@@ -17,8 +17,7 @@ export class SignupComponent {
   constructor (
     private fb: FormBuilder,
     private userService: UserService,
-    private router: Router,
-    private chRef: ChangeDetectorRef
+    private router: Router
   ) {
 
     this.registerForm = this.fb.group({
@@ -33,8 +32,8 @@ export class SignupComponent {
     this.submitted = true;
     if (this.registerForm.valid) {
       this.userService.signup(this.registerForm.value).subscribe(() => {
-        this.chRef.detectChanges();
-        this.router.navigate(['/']);
+
+        this.router.navigate(['/'], {replaceUrl: true});
       }, err => {
         if (err.error && err.error.message) {
           this.errorMsg = err.error.message;

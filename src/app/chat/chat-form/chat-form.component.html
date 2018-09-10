@@ -1,10 +1,20 @@
 
 
-<div class="chat-form" *ngIf="isLoggedIn">
+<div class="chat-form">
   <div class="message-input">
-    <input type="text" class="text-form" />
+    <input
+      type="text"
+      class="text-form"
+      [placeholder]="isLoggedIn() ? 'Your message...' : 'Sign in to write messages'"
+      [disabled]="!isLoggedIn()"
+    />
   </div>
   <div class="message-button">
-    <input type="submit" class="form-button" value="Send message">
+    <input
+      type="submit"
+      class="form-button"
+      value="Send message"
+      [disabled]="!isLoggedIn()"
+    >
   </div>
 </div>
