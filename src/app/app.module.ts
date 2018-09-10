@@ -19,6 +19,7 @@ import { ContactComponent } from './chat/contacts-box/contact/contact.component'
 import { ChatBubbleComponent } from './chat/chat-messages/chat-bubble/chat-bubble.component';
 import { SearchBoxComponent } from './chat/contacts-box/search-box/search-box.component';
 import { SearchingPipe } from './pipes/searching.pipe';
+import { OnlinesPipe } from './pipes/onlines.pipe';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { SearchingPipe } from './pipes/searching.pipe';
     ContactComponent,
     ChatBubbleComponent,
     SearchBoxComponent,
-    SearchingPipe
+    SearchingPipe,
+    OnlinesPipe
   ],
   imports: [
     BrowserModule,

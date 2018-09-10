@@ -16,14 +16,12 @@ export class ChatComponent implements OnInit {
 
   ngOnInit() {
     this.onlineContacts$ = this.wsService.listen('online-contacts');
-
     this.onlineContacts$.subscribe(data => {
       this.onlineContacts = data;
     });
 
 
-
-    this.wsService.send('test', {msg: 111});
+    // this.wsService.send('test', {msg: 111});
   }
 
   activeContact(data: Contact) {

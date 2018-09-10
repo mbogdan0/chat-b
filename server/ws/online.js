@@ -7,7 +7,7 @@ class onlineUsers {
   }
 
   addData(socketID, userID) {
-    this.DATA.set(socketID, userID);
+    this.DATA.set(socketID, userID.toString());
     return Promise.resolve();
   }
 

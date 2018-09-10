@@ -2,7 +2,10 @@
      [ngClass]="{'active': data.active}"
      (click)="makeActive()"
 >
-  <div class="picture">
+  <div
+    class="picture"
+    [ngClass]="{'online': data.online}"
+  >
     <img [src]="data.picture">
   </div>
   <div class="details">

@@ -4,11 +4,11 @@
 
 
   <div class="user-picture">
-    <img [src]="data?.picture" *ngIf="data?.picture" />
+    <img [src]="data?.picture || 'http://charmingdate.ru/1/t.png'" />
   </div>
   <div class="user-description">
     <div class="username-desc">
-      {{data?.username}}
+      {{data?.username || 'Please select chat'}}
     </div>
     {{data?.botDescription}}
   </div>

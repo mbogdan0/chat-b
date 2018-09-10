@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Contact} from '../contacts-box/contact/contact.model';
 
 @Component({
@@ -6,11 +6,7 @@ import {Contact} from '../contacts-box/contact/contact.model';
   templateUrl: './selected-detail.component.html',
   styleUrls: ['./selected-detail.component.scss']
 })
-export class SelectedDetailComponent implements OnInit {
+export class SelectedDetailComponent {
   @Input() data: Contact;
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }
