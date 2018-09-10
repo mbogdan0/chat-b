@@ -20,6 +20,19 @@ const UserSchema = new Schema({
     index: { unique: true },
     trim: true,
     required: true
+  },
+  picture: {
+    type: String
+  },
+  isBot: {
+    type: Boolean,
+    default: false,
+    index: true,
+    required: true
+  },
+  botDescription: {
+    type: String,
+    trim: true
   }
 });
 
