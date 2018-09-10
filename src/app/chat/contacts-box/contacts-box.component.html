@@ -1,19 +1,23 @@
 <div class="tabs">
   <div class="tab"
        [ngClass]="{'active': onlineOnly}"
-       (click)="onlineOnly = !onlineOnly"
+       (click)="onlineOnly = true"
   >
     Online
   </div>
   <div class="tab"
        [ngClass]="{'active': !onlineOnly}"
-       (click)="onlineOnly = !onlineOnly"
+       (click)="onlineOnly = false"
   >
     All
   </div>
 </div>
 
-
-<div class="contacts-data" *ngFor="let contact of contacts; trackBy: trackByFn">
-  <app-contact [data]="contact" (activate)="makeActive($event)"></app-contact>
+<div class="contacts-data">
+  <ng-container *ngFor="let contact of contacts | searching: searchTerm; trackBy: trackByFn">
+    <app-contact [data]="contact" (activate)="makeActive($event)"></app-contact>
+  </ng-container>
 </div>
+
+<app-search-box (searching)="searchBox($event)"></app-search-box>
+

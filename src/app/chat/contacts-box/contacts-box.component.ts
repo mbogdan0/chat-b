@@ -32,7 +32,7 @@ export class ContactsBoxComponent implements OnInit {
       username: 'Alice',
       picture: 'https://www.dogalize.com/wp-content/uploads/2017/06/cat-300572_640-200x200.jpg',
       isbot: false,
-      lastmsg: 'Lвыаола двылove Bogdaл овало вапыn',
+      lastmsg: 'message example',
       online: true,
       active: false,
       time: (new Date()).valueOf(),
@@ -41,6 +41,7 @@ export class ContactsBoxComponent implements OnInit {
   ];
   @Output() selectContact = new EventEmitter<Contact>();
   public onlineOnly = true;
+  public searchTerm: string;
   constructor() { }
 
   ngOnInit() {
@@ -71,5 +72,7 @@ export class ContactsBoxComponent implements OnInit {
     }
     this.contacts = contacts;
   }
-
+  searchBox(search: string) {
+    this.searchTerm = search;
+  }
 }

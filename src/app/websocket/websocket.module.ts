@@ -1,9 +1,6 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { WebsocketService } from './websocket.service';
-import { config } from './websocket.config';
-import { WebSocketConfig } from './websocket.interfaces';
 
 
 @NgModule({
@@ -15,11 +12,4 @@ import { WebSocketConfig } from './websocket.interfaces';
     WebsocketService
   ]
 })
-export class WebsocketModule {
-  public static config(wsConfig: WebSocketConfig): ModuleWithProviders {
-    return {
-      ngModule: WebsocketModule,
-      providers: [{ provide: config, useValue: wsConfig }]
-    };
-  }
-}
+export class WebsocketModule {}

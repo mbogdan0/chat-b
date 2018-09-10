@@ -3,7 +3,7 @@
   <div class="main-box">
 
     <div class="selected-detail">
-      <app-selected-detail></app-selected-detail>
+      <app-selected-detail [data]="selectedContact"></app-selected-detail>
     </div>
 
     <div class="chat-messages">
@@ -17,7 +17,7 @@
   </div>
 
   <div class="contacts-box">
-    <app-contacts-box></app-contacts-box>
+    <app-contacts-box (selectContact)="activeContact($event)"></app-contacts-box>
   </div>
 
 </div>

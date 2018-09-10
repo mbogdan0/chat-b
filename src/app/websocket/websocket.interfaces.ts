@@ -10,6 +10,7 @@ export interface WebSocketConfig {
   url: string;
   reconnectInterval?: number;
   reconnectAttempts?: number;
+  WebSocketCtor: any;
 }
 
 export interface IWsMessage<T> {

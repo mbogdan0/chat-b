@@ -14,6 +14,11 @@ import {WebsocketModule} from './websocket';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { SigninComponent } from './signin/signin.component';
+import { CtextPipe } from './pipes/ctext.pipe';
+import { ContactComponent } from './chat/contacts-box/contact/contact.component';
+import { ChatBubbleComponent } from './chat/chat-messages/chat-bubble/chat-bubble.component';
+import { SearchBoxComponent } from './chat/contacts-box/search-box/search-box.component';
+import { SearchingPipe } from './pipes/searching.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +30,12 @@ import { SigninComponent } from './signin/signin.component';
     ChatMessagesComponent,
     ChatComponent,
     SignupComponent,
-    SigninComponent
+    SigninComponent,
+    CtextPipe,
+    ContactComponent,
+    ChatBubbleComponent,
+    SearchBoxComponent,
+    SearchingPipe
   ],
   imports: [
     BrowserModule,
@@ -33,9 +43,7 @@ import { SigninComponent } from './signin/signin.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    WebsocketModule.config({
-      url: 'ws://localhost:4201'
-    })
+    WebsocketModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

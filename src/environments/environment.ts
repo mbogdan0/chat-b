@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:3004',
+  socketUrl: 'ws://localhost:3004/',
   tokenStorage: {
     fieldVal: 'user-token-val',
     fieldExp: 'user-token-exp'
