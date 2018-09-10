@@ -1,15 +1,18 @@
+const OnlineUsers = require('./online');
+const {contactsBox} = require('./contact-box');
 
-const {addOnline, delOnline} = require('../ws/online');
 
 module.exports = io => {
-  io.on('connection', (socket) => {
-    addOnline(socket.id, socket.handshake.query);
+  io.on('connection', socket => {
+    OnlineUsers.addOnline(socket.id, socket.handshake.query).then(() => contactsBox(socket, 'connect'));
 
 
 
-    socket.on('disconnect', () => delOnline(socket.id));
+    socket.on('disconnect', () => OnlineUsers.delOnline(socket.id).then(() => contactsBox(socket, 'disconnect')));
   });
 };
 
 
 
+//socket.broadcast.emit('online-contacts', 'hello friends!') - dis
+//socket.emit('online-contacts', 'hello friends!')

@@ -14,7 +14,7 @@ export class ContactComponent {
 
   makeActive() {
     if (!this.data.active) {
-      this.activate.emit(this.data.id);
+      this.activate.emit(this.data._id);
     }
   }
 

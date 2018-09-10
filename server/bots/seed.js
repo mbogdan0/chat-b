@@ -1,42 +1,25 @@
 const User = require('../models/user');
-const BOTS = [
-  {
-    email: 'echobot@example.com',
-    password: '43876984376343',
-    username: 'Echo bot',
-    picture: '',
-    isBot: true,
-    botDescription: 'Super bot. Echo bot'
-  },
-  {
-    email: 'reverse@example.com',
-    password: '34674896734987643',
-    username: 'Reverse bot',
-    picture: '',
-    isBot: true,
-    botDescription: 'Super bot. Reverse bot'
-  },
-  {
-    email: 'spambot@example.com',
-    password: '78327598327435',
-    username: 'Spam bot',
-    picture: '',
-    isBot: true,
-    botDescription: 'Super bot. Spam bot'
-  },
-  {
-    email: 'ignorebot@example.com',
-    password: '34768943860034',
-    username: 'Ignore bot',
-    picture: '',
-    isBot: true,
-    botDescription: 'Super bot. Ignore bot'
-  }
-];
+const OnlineUsers = require('../ws/online');
+const BOTS = require('./BOTS');
+
 
 const fillBots = async () => {
   for (let i = 0; i < BOTS.length; i++) {
-    await new User(BOTS[i]).save();
+    try {
+      await new User(BOTS[i]).save();
+    } catch (e) { // on duplicate error
+      // TODO: handle error in better way
+    }
   }
-  return true;
+  makeBotsOnline();
 };
+
+const makeBotsOnline = () => {
+  User.find({isBot: true}).lean().then(bots => {
+    bots.forEach(bot => {
+      OnlineUsers.addData(bot.email, bot._id);
+    });
+  }).catch(console.error);
+};
+
+module.exports = {fillBots};

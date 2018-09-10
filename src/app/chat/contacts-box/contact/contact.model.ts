@@ -1,14 +1,14 @@
 export class Contact {
   constructor(
-    public id: string,
+    public _id: string,
     public username: string,
     public picture: string,
-    public isbot: boolean,
+    public isBot: boolean,
     public lastmsg: string,
     public active: boolean,
     public time: any,
     public online: boolean,
-    public botdesc?: string
+    public botDescription?: string
   ) {}
 }
 

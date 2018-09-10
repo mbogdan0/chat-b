@@ -17,7 +17,11 @@
   </div>
 
   <div class="contacts-box">
-    <app-contacts-box (selectContact)="activeContact($event)"></app-contacts-box>
+    <app-contacts-box
+      [contacts]="onlineContacts"
+      (selectContact)="activeContact($event)"
+    ></app-contacts-box>
   </div>
 
 </div>
+
