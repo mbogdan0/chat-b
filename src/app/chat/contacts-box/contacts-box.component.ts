@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
+import {AfterContentChecked, Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {Contact} from './contact/contact.model';
 
 @Component({
@@ -6,7 +6,7 @@ import {Contact} from './contact/contact.model';
   templateUrl: './contacts-box.component.html',
   styleUrls: ['./contacts-box.component.scss']
 })
-export class ContactsBoxComponent implements OnChanges {
+export class ContactsBoxComponent {
   @Input() contacts: Contact[];
   // public contacts = [
   //   {
@@ -44,9 +44,6 @@ export class ContactsBoxComponent implements OnChanges {
   public onlineOnly = true;
   public searchTerm: string;
   constructor() { }
-
-  ngOnChanges() {
-  }
   makeActive(id: string) {
     const contacts = this.contacts.slice(0);
     contacts.forEach((item: Contact) => {
