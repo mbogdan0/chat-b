@@ -79,7 +79,7 @@ class contactBox {
     const user_id = OnlineUsers.uidBySockId(socket.id);
     const list = await this.onlineActualList(user_id);
 
-    console.log(user_id, type);
+   // console.log(user_id, type);
 
     if (type === 'connect') {
       socket.emit('online-contacts', list);

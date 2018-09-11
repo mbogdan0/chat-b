@@ -29,6 +29,16 @@ class onlineUsers {
     return this.data.get(sockId);
   }
 
+  sockIdByUid(uid) {
+    let sock = null;
+    this.data.forEach((val, key) => {
+      if (val === uid) {
+        sock = key;
+      }
+    });
+    return sock;
+  }
+
   onlineIds() {
     // convert DATA map to array and remove empty values (guests)
     return Array.from(this.data.values()).filter(val => val);
@@ -39,9 +49,4 @@ class onlineUsers {
 
 
 const OnlineUsers = new onlineUsers(); // singleton
-
-setInterval(() => {
-  console.log(OnlineUsers.data.size)
-}, 500);
-
 module.exports = OnlineUsers;

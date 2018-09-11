@@ -21,6 +21,7 @@ import { SearchBoxComponent } from './chat/contacts-box/search-box/search-box.co
 import { SearchingPipe } from './pipes/searching.pipe';
 import { OnlinesPipe } from './pipes/onlines.pipe';
 import {AuthInterceptor} from './services/auth.interceptor';
+import { ChatFormTypingComponent } from './chat/chat-form/chat-form-typing/chat-form-typing.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {AuthInterceptor} from './services/auth.interceptor';
     ChatBubbleComponent,
     SearchBoxComponent,
     SearchingPipe,
-    OnlinesPipe
+    OnlinesPipe,
+    ChatFormTypingComponent
   ],
   imports: [
     BrowserModule,

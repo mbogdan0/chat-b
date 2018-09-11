@@ -14,6 +14,7 @@ module.exports = io => {
       ContactsBox.emitList(socket, 'disconnect').catch(console.error);
     });
 
+    socket.on('typing', data => require('./typing')(socket, data, io));
 
 
   });

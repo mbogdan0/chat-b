@@ -1,5 +1,10 @@
 
 
+
+<app-chat-form-typing
+  [contact]="contact"
+></app-chat-form-typing>
+
 <div class="chat-form">
   <div class="message-input">
     <input
@@ -7,6 +12,7 @@
       class="text-form"
       [placeholder]="isLoggedIn() ? 'Your message...' : 'Sign in to write messages'"
       [disabled]="!isLoggedIn()"
+      (keydown)="typing.next($event.target.value)"
     />
   </div>
   <div class="message-button">
