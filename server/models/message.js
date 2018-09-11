@@ -1,7 +1,7 @@
 
 const {Schema} = require('mongoose');
 const mongoose = require('mongoose');
-
+const chatId = require('../act/chat-id');
 
 const MessageSchema = new Schema({
   message: {
@@ -22,13 +22,26 @@ const MessageSchema = new Schema({
   },
   time: {
     type: Date,
-    required: true,
     index: true
   },
   seenAt: {
     type: Date
+  },
+  chatId: {
+    type: String,
+    index: true
   }
 });
+
+
+MessageSchema.pre('save', function(next) {
+  let message = this;
+
+  message.chatId = chatId(message.owner, message.receiver);
+  message.time = new Date();
+  next();
+});
+
 
 const Message = mongoose.model('Message', MessageSchema);
 module.exports = Message;

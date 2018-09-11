@@ -31,6 +31,7 @@ export class WebsocketService implements OnDestroy {
    listen(event: string): Observable<Contact[]> {
      return new Observable(observer => {
        this.socket.on(event, (data) => {
+         console.log(event, data);
          observer.next(data);
        });
        return () => {

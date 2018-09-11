@@ -1,22 +1,22 @@
 const OnlineUsers = require('./online-users');
 const ContactsBox = require('./contact-box');
-
+const typing = require('./typing');
+const chat = require('./chat');
 
 module.exports = io => {
   io.on('connection', socket => {
 
     OnlineUsers.addOnline(socket.id, socket.handshake.query)
-      .then(() => ContactsBox.emitList(socket, 'connect'))
+      .then(() => ContactsBox.emitList(io))
       .catch(console.error);
 
     socket.on('disconnect', () => {
       OnlineUsers.delOnline(socket.id);
-      ContactsBox.emitList(socket, 'disconnect').catch(console.error);
+      ContactsBox.emitList(io).catch(console.error);
     });
 
-    socket.on('typing', data => require('./typing')(socket, data, io));
-
-
+    socket.on('typing', data => typing(socket, data, io));
+    socket.on('chat', data => chat(socket, data, io));
   });
 };
 

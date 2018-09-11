@@ -30,5 +30,4 @@ export class ChatFormTypingComponent implements OnInit, OnChanges {
       })
     ).subscribe();
   }
-
 }

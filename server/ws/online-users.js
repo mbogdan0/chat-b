@@ -23,6 +23,7 @@ class onlineUsers {
         console.error(e);
       }
     }
+    return true;
   }
 
   uidBySockId(sockId) {

@@ -53,7 +53,7 @@ class contactBox {
 
 
 
-  async onlineActualList(uid) {
+  async onlineActualList() {
     const listUserIds = OnlineUsers.onlineIds();
 
     // if new user just has signed up - add to cache
@@ -65,30 +65,18 @@ class contactBox {
     const output = [];
     this.data.forEach((user) => {
       let _uid = user._id.toString();
-      if (1 || _uid !== uid) {
-        output.push({
-          ...user,
-          online: listUserIds.indexOf(_uid) > -1
-        });
-      }
+      output.push({
+        ...user,
+        online: listUserIds.indexOf(_uid) > -1
+      });
     });
     return output;
   }
 
-  async emitList(socket, type) {
-    const user_id = OnlineUsers.uidBySockId(socket.id);
-    const list = await this.onlineActualList(user_id);
+  async emitList(io) {
+    const list = await this.onlineActualList(uid);
 
-   // console.log(user_id, type);
-
-    if (type === 'connect') {
-      socket.emit('online-contacts', list);
-    } else {
-      socket.broadcast.emit('online-contacts', list);
-    }
-
-
-
+    io.emit('online-contacts', list);
   }
 
 }
