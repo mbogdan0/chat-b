@@ -11,19 +11,14 @@ require('./api/routes')(app);
 
 
 const config = {
-  autoIndex: true,
-  useCreateIndex: true,
   useNewUrlParser: true
 };
-
 
 http.listen(3004,  () => {
   console.log('App listening on port 3004!');
   mongoose.connect('mongodb://localhost:27017/chat-b', config).then(() => {
     console.log('MongoDB is running on port 27017');
-
     fillBots();
-
   }).catch(err => {
     console.error(err);
   });

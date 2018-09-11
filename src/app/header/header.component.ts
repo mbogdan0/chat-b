@@ -1,6 +1,8 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {AfterContentChecked, Component, OnInit} from '@angular/core';
 import {AuthService} from '../services/auth.service';
 import {Router} from '@angular/router';
+import {WebsocketService} from '../websocket';
+import {UserService} from '../services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -8,13 +10,20 @@ import {Router} from '@angular/router';
   styleUrls: ['./header.component.scss'],
   providers: [AuthService]
 })
-export class HeaderComponent {
-
+export class HeaderComponent implements OnInit {
+  public profile: any;
   constructor(
     private authService: AuthService,
-    private chRef: ChangeDetectorRef,
-    private router: Router
+    private router: Router,
+    private websocketService: WebsocketService,
+    private userService: UserService
   ) { }
+
+  ngOnInit() {
+    this.userService.profile().subscribe(data => {
+      this.profile = data;
+    });
+  }
 
   isLoggedIn() {
     return this.authService.isLoggedIn;
@@ -22,6 +31,7 @@ export class HeaderComponent {
 
   logout() {
     this.authService.logout();
+    this.websocketService.init();
     this.router.navigate(['/'], { replaceUrl: true});
   }
 

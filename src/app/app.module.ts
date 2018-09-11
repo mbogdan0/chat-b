@@ -12,7 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SignupComponent } from './signup/signup.component';
 import {WebsocketModule} from './websocket';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { SigninComponent } from './signin/signin.component';
 import { CtextPipe } from './pipes/ctext.pipe';
 import { ContactComponent } from './chat/contacts-box/contact/contact.component';
@@ -20,6 +20,7 @@ import { ChatBubbleComponent } from './chat/chat-messages/chat-bubble/chat-bubbl
 import { SearchBoxComponent } from './chat/contacts-box/search-box/search-box.component';
 import { SearchingPipe } from './pipes/searching.pipe';
 import { OnlinesPipe } from './pipes/onlines.pipe';
+import {AuthInterceptor} from './services/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,13 @@ import { OnlinesPipe } from './pipes/onlines.pipe';
     HttpClientModule,
     WebsocketModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

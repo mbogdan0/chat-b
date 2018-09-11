@@ -35,4 +35,7 @@ export class UserService {
       })
     );
   }
+  public profile(): Observable<any> {
+    return this.http.get(`${ this.path }/profile`);
+  }
 }

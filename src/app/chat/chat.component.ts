@@ -16,9 +16,9 @@ export class ChatComponent implements OnInit {
   constructor(private wsService: WebsocketService) { }
 
   ngOnInit() {
-    console.log('initttt')
     this.onlineContacts$ = this.wsService.listen('online-contacts');
     this.onlineContacts$.subscribe(data => {
+      console.log(data);
       this.onlineContacts = this.selectFirstContact(data);
     });
   }
@@ -40,5 +40,4 @@ export class ChatComponent implements OnInit {
   activeContact(data: Contact) {
     this.selectedContact = data;
   }
-
 }

@@ -5,7 +5,7 @@ const decode = (token) => {
   return new Promise((resolve, reject) => {
     jwt.verify(token, JWT_SECRET, (err, decoded) => {
       if (err) return reject(err);
-      resolve(decoded.user_id);
+      resolve(decoded.user_id.toString());
     });
   });
 };

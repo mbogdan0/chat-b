@@ -1,5 +1,5 @@
 const User = require('../models/user');
-const OnlineUsers = require('../ws/online');
+const OnlineUsers = require('../ws/online-users');
 const BOTS = require('./BOTS');
 
 

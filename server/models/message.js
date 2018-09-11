@@ -24,6 +24,9 @@ const MessageSchema = new Schema({
     type: Date,
     required: true,
     index: true
+  },
+  seenAt: {
+    type: Date
   }
 });
 

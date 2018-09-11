@@ -19,8 +19,8 @@ export class SigninComponent {
     private websocketService: WebsocketService
   ) {
     this.loginForm = this.fb.group({
-      username: ['21bgdn', [<any>Validators.required]],
-      password: ['123321', [<any>Validators.required]]
+      username: ['', [<any>Validators.required]],
+      password: ['', [<any>Validators.required]]
     }, { });
   }
   onSubmit() {
