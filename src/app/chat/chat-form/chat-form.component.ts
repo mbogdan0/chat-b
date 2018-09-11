@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {Contact} from '../contacts-box/contact/contact.model';
-import {of, Subject, timer} from 'rxjs';
-import {debounce, debounceTime, switchMap, tap, throttleTime} from 'rxjs/internal/operators';
+import {Subject} from 'rxjs';
+import {tap, throttleTime} from 'rxjs/internal/operators';
 import {WebsocketService} from '../../websocket';
 
 @Component({
@@ -24,9 +24,6 @@ export class ChatFormComponent implements OnInit {
       throttleTime(2000),
       tap(() => this.sendTypingStatus())
     ).subscribe();
-
-
-
   }
 
   isLoggedIn() {

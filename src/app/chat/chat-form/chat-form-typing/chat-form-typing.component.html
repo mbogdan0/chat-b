@@ -1,4 +1,9 @@
-<div class="is-typing" *ngIf="contactTyping">
-  {{contact?.username}} is typing...
+<div class="is-typing">
+  <ng-container *ngIf="contactTyping; else notTyping">
+    {{contact?.username}} is typing...
+  </ng-container>
+  <ng-template #notTyping>
+    &nbsp; <!-- stopped typing message -->
+  </ng-template>
 </div>
 
