@@ -3,6 +3,8 @@ import {WebsocketService} from '../websocket';
 import {FormBuilder, Validators} from '@angular/forms';
 import {UserService} from '../services/user.service';
 import {Router} from '@angular/router';
+import {AuthService} from '../services/auth.service';
+import {switchMap} from 'rxjs/internal/operators';
 
 @Component({
   selector: 'app-signup',
@@ -17,6 +19,7 @@ export class SignupComponent {
   constructor (
     private fb: FormBuilder,
     private userService: UserService,
+    private authService: AuthService,
     private router: Router,
     private websocketService: WebsocketService
   ) {
@@ -32,7 +35,9 @@ export class SignupComponent {
   onSubmit() {
     this.submitted = true;
     if (this.registerForm.valid) {
-      this.userService.signup(this.registerForm.value).subscribe(() => {
+      this.userService.signup(this.registerForm.value).pipe(
+        switchMap(() => this.authService.setProfile())
+      ).subscribe(() => {
         this.websocketService.init();
         this.router.navigate(['/']);
       }, err => {

@@ -17,6 +17,7 @@ module.exports = (socket, data, io) => {
       receiver: data.contact._id
     }).save((err, doc) => {
       if (err) return console.error(err); // TODO: pass error to frontend
+      console.log(doc);
       io.to(receiver).emit('receive_chat', doc);
       socket.emit('receive_chat', doc);
     });

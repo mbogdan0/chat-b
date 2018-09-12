@@ -10,7 +10,7 @@
     </ng-container>
 
     <ng-template #loggedIn>
-      Hello, <b>{{profile?.username}}</b>
+      Hello, <b>{{username()}}</b>
       (<a (click)="logout()">Log out</a>)
     </ng-template>
   </div>

@@ -3,6 +3,8 @@ import {FormBuilder, Validators} from '@angular/forms';
 import {UserService} from '../services/user.service';
 import {Router} from '@angular/router';
 import {WebsocketService} from '../websocket';
+import {switchMap} from 'rxjs/internal/operators';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-signin',
@@ -15,6 +17,7 @@ export class SigninComponent {
   constructor (
     private fb: FormBuilder,
     private userService: UserService,
+    private authService: AuthService,
     private router: Router,
     private websocketService: WebsocketService
   ) {
@@ -26,7 +29,9 @@ export class SigninComponent {
   onSubmit() {
     if (this.loginForm.valid) {
       this.errorMsg = null;
-      this.userService.login(this.loginForm.value).subscribe(() => {
+      this.userService.login(this.loginForm.value).pipe(
+        switchMap(() => this.authService.setProfile())
+      ).subscribe(() => {
         this.websocketService.init();
         this.router.navigate(['/']);
       }, err => {

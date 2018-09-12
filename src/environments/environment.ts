@@ -9,7 +9,8 @@ export const environment = {
   tokenStorage: {
     fieldVal: 'user-token-val',
     fieldExp: 'user-token-exp'
-  }
+  },
+  profileStorage: 'user-details'
 };
 
 /*

@@ -11,28 +11,23 @@ import {UserService} from '../services/user.service';
   providers: [AuthService]
 })
 export class HeaderComponent implements OnInit {
-  public profile: any;
   constructor(
     private authService: AuthService,
     private router: Router,
-    private websocketService: WebsocketService,
-    private userService: UserService
+    private websocketService: WebsocketService
   ) { }
 
   ngOnInit() {
-    this.userService.profile().subscribe(data => {
-      this.profile = data;
-    });
   }
-
+  username() {
+    return this.authService.profile ? this.authService.profile.username : null;
+  }
   isLoggedIn() {
     return this.authService.isLoggedIn;
   }
-
   logout() {
     this.authService.logout();
     this.websocketService.init();
     this.router.navigate(['/'], { replaceUrl: true});
   }
-
 }
