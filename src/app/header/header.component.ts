@@ -26,8 +26,8 @@ export class HeaderComponent implements OnInit {
     return this.authService.isLoggedIn;
   }
   logout() {
+    this.websocketService.send('logout', {});
     this.authService.logout();
-    this.websocketService.init();
     this.router.navigate(['/'], { replaceUrl: true});
   }
 }

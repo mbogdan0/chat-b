@@ -74,8 +74,7 @@ class contactBox {
   }
 
   async emitList(io) {
-    const list = await this.onlineActualList(uid);
-
+    const list = await this.onlineActualList();
     io.emit('online-contacts', list);
   }
 

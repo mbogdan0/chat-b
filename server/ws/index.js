@@ -2,6 +2,7 @@ const OnlineUsers = require('./online-users');
 const ContactsBox = require('./contact-box');
 const typing = require('./typing');
 const chat = require('./chat');
+const logout = require('./logout');
 
 module.exports = io => {
   io.on('connection', socket => {
@@ -17,6 +18,8 @@ module.exports = io => {
 
     socket.on('typing', data => typing(socket, data, io));
     socket.on('chat', data => chat(socket, data, io));
+    socket.on('logout', data => logout(socket, data, io));
+
   });
 };
 

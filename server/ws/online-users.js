@@ -40,6 +40,14 @@ class onlineUsers {
     return sock;
   }
 
+  logoutByUid(uid) {
+    this.data.forEach((val, key) => {
+      if (val === uid) {
+        this.data.delete(key);
+      }
+    });
+  }
+
   onlineIds() {
     // convert DATA map to array and remove empty values (guests)
     return Array.from(this.data.values()).filter(val => val);

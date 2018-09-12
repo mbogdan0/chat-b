@@ -11,7 +11,9 @@ import {Contact} from '../chat/contacts-box/contact/contact.model';
 export class WebsocketService implements OnDestroy {
    private socket;
 
-   constructor (private authService: AuthService) {
+   constructor (
+     private authService: AuthService
+   ) {
      this.init();
    }
    init() { // to be able re-init socket if token is changed
