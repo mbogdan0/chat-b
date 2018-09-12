@@ -1,5 +1,6 @@
 import {AfterContentChecked, Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {Contact} from './contact/contact.model';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-contacts-box',
@@ -8,42 +9,12 @@ import {Contact} from './contact/contact.model';
 })
 export class ContactsBoxComponent {
   @Input() contacts: Contact[];
-  // public contacts = [
-  //   {
-  //     username: 'Reserve Bot',
-  //     picture: 'https://www.dogalize.com/wp-content/uploads/2017/06/cat-300572_640-200x200.jpg',
-  //     isbot: true,
-  //     botdesc: 'Bot description',
-  //     lastmsg: 'Hello dear how are you?',
-  //     active: false,
-  //     online: true,
-  //     time: (new Date()).valueOf(),
-  //     id: '1'
-  //   },
-  //   {
-  //     username: 'Bogdan',
-  //     picture: 'https://www.dogalize.com/wp-content/uploads/2017/06/cat-300572_640-200x200.jpg',
-  //     isbot: false,
-  //     lastmsg: 'honey',
-  //     active: false,
-  //     online: false,
-  //     time: (new Date()).valueOf(),
-  //     id: '2'
-  //   },    {
-  //     username: 'Alice',
-  //     picture: 'https://www.dogalize.com/wp-content/uploads/2017/06/cat-300572_640-200x200.jpg',
-  //     isbot: false,
-  //     lastmsg: 'message example',
-  //     online: true,
-  //     active: false,
-  //     time: (new Date()).valueOf(),
-  //     id: '3'
-  //   }
-  // ];
   @Output() selectContact = new EventEmitter<Contact>();
   public onlineOnly = true;
   public searchTerm: string;
-  constructor() { }
+  constructor(
+    private authService: AuthService
+  ) { }
   makeActive(id: string) {
     const contacts = this.contacts.slice(0);
     contacts.forEach((item: Contact) => {
@@ -57,6 +28,9 @@ export class ContactsBoxComponent {
   }
   searchBox(search: string) {
     this.searchTerm = search;
+  }
+  profileId() {
+    return this.authService.profile ? this.authService.profile._id : null;
   }
   trackByFn(index, item) {
     return item._id;

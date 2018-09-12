@@ -18,6 +18,7 @@
     <app-contact
       [data]="contact"
       (activate)="makeActive($event)"
+      *ngIf="contact._id != profileId()"
     ></app-contact>
   </ng-container>
 </div>
