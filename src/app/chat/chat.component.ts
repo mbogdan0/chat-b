@@ -18,7 +18,6 @@ export class ChatComponent implements OnInit {
   ngOnInit() {
     this.onlineContacts$ = this.wsService.listen('online-contacts');
     this.onlineContacts$.subscribe(data => {
-      console.log(data);
       this.onlineContacts = this.selectFirstContact(data);
     });
   }
