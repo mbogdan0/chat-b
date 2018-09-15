@@ -1,5 +1,5 @@
 const OnlineUsers = require('./online-users');
-const botAct = require('../bots/act/index')
+const botAct = require('../bots/act/index');
 const Message = require('../models/message');
 const User = require('../models/user');
 

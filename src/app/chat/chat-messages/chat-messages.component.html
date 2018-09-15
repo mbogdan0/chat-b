@@ -1,7 +1,14 @@
 
 
 
-<div>
+<div
+  #chatEl
+  class="aa"
+  infiniteScroll
+  [scrollWindow]="false"
+  [infiniteScrollUpDistance]="4.5"
+  [infiniteScrollThrottle]="50"
+  (scrolledUp)="onScroll()">
 
   <ng-container *ngFor="let messages of chatMessages; trackBy: trackByFn">
     <ng-container *ngIf="messages.chatId == chatID">
