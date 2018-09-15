@@ -12,5 +12,4 @@ export class SearchBoxComponent {
   search(val: string) {
     this.searching.emit(val);
   }
-
 }

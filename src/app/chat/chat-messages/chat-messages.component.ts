@@ -46,6 +46,7 @@ export class ChatMessagesComponent implements OnInit, OnChanges {
       const cid = chatId(this.myId, this.contact._id);
       if (cid !== this.chatID) {
         this.offset = 10;
+        this.firstScroll = true;
       }
       this.chatID = cid;
     } else {
@@ -70,6 +71,6 @@ export class ChatMessagesComponent implements OnInit, OnChanges {
   scrollDown() {
     setTimeout(() => {
       this.chatEl.nativeElement.scrollTop = this.chatEl.nativeElement.scrollHeight;
-    }, 100);
+    }, 150);
   }
 }

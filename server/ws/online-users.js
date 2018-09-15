@@ -18,6 +18,7 @@ class onlineUsers {
     if (query && query.token) { // if token is set - we can get user's ID
       try {
         const uid = await decode(query.token);
+        console.log(uid, 'added online')
         this.addData(socketID, uid);
       } catch (e) {
         console.error(e);

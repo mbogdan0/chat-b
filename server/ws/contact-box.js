@@ -1,10 +1,11 @@
 const OnlineUsers = require('./online-users');
 const User = require('../models/user');
+const mongoose = require('mongoose');
 
 class contactBox {
   constructor() {
-    this.cacheAllUsers();
     this.data = new Map();
+    this.cacheAllUsers();
   }
 
   cacheAllUsers() {
@@ -20,7 +21,7 @@ class contactBox {
       }
     ]).then(results => {
       results.forEach(user => {
-        this.data.set(user._id, user);
+        this.data.set(user._id.toString(), user);
       });
     }).catch(console.error);
   }
@@ -39,12 +40,12 @@ class contactBox {
         },
         {
           $match: {
-            _id: uid
+            _id: mongoose.Types.ObjectId(uid.toString())
           }
         }
       ]).then(results => {
         results.forEach(user => {
-          this.data.set(user._id, user);
+          this.data.set(user._id.toString(), user);
         });
         resolve(true);
       }).catch(reject);
@@ -55,11 +56,10 @@ class contactBox {
 
   async onlineActualList() {
     const listUserIds = OnlineUsers.onlineIds();
-
     // if new user just has signed up - add to cache
-    for (let i=0; i<listUserIds.length; i++) {
-      if (!this.data.has(listUserIds[i])) {
-        await this.addUserToCache(listUserIds[i]);
+    for (let i = 0; i < listUserIds.length; i++) {
+      if (!this.data.has(listUserIds[i].toString())) {
+        await this.addUserToCache(listUserIds[i].toString());
       }
     }
     const output = [];
