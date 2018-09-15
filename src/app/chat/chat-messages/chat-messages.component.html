@@ -6,8 +6,8 @@
   class="aa"
   infiniteScroll
   [scrollWindow]="false"
-  [infiniteScrollUpDistance]="4.5"
-  [infiniteScrollThrottle]="50"
+  [infiniteScrollUpDistance]="5.5"
+  [infiniteScrollThrottle]="10"
   (scrolledUp)="onScroll()">
 
   <ng-container *ngFor="let messages of chatMessages; trackBy: trackByFn">

@@ -18,6 +18,7 @@ export class ChatMessagesComponent implements OnInit, OnChanges {
   public chatID: string;
   public myId: string;
   public chatMessages: ChatMessages[] = [];
+  private firstScroll = true;
   private offset = 10;
   private limit = 10;
 
@@ -28,8 +29,15 @@ export class ChatMessagesComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit() {
-    this.chatMessagesService.listenMessages().subscribe(data => {
-      this.chatMessages = data;
+    this.chatMessagesService.listenMessages()
+      .subscribe((chatEvent: { data: ChatMessages[], event: 'many' | 'one' }) => {
+      this.chatMessages = chatEvent.data;
+      if (chatEvent.event === 'one') {
+        this.scrollDown();
+      } else if (chatEvent.event === 'many' && this.firstScroll) {
+        this.firstScroll = false;
+        this.scrollDown();
+      }
     });
   }
   ngOnChanges() {
@@ -43,9 +51,7 @@ export class ChatMessagesComponent implements OnInit, OnChanges {
     } else {
       this.chatID = null;
     }
-    setTimeout(() => {
-      this.chatEl.nativeElement.scrollTop = this.chatEl.nativeElement.scrollHeight;
-    }, 100);
+
   }
   onScroll() {
     this.loadMessages();
@@ -61,5 +67,9 @@ export class ChatMessagesComponent implements OnInit, OnChanges {
   trackByFn(index, item) {
     return item.chatId;
   }
-
+  scrollDown() {
+    setTimeout(() => {
+      this.chatEl.nativeElement.scrollTop = this.chatEl.nativeElement.scrollHeight;
+    }, 100);
+  }
 }

@@ -4,14 +4,11 @@ const Message = require('../models/message');
 const User = require('../models/user');
 
 module.exports = (socket, data, io) => {
-
   const sender = OnlineUsers.uidBySockId(socket.id);
   const receiver = OnlineUsers.sockIdByUid(data.contact._id);
-
   if (data.contact.isBot) {
-    botAct(io, {sender, receiver, contact: data.contact});
+    botAct(socket, {sender, receiver, data});
   } else {
-
     new Message({
       message: data.msg,
       owner: sender,
@@ -24,8 +21,8 @@ module.exports = (socket, data, io) => {
       }, (err, data) => {
         if (err) return console.error(err); // TODO: pass error to frontend
 
-        io.to(receiver).emit('receive_chat', data);
-        socket.emit('receive_chat', data);
+        io.to(receiver).emit('chat_msg', data);
+        socket.emit('chat_msg', data);
       });
     });
   }

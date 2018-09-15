@@ -2,8 +2,16 @@ import { Injectable } from '@angular/core';
 import {WebsocketService} from '../websocket';
 import {ChatMessage} from '../chat/chat-messages/chat-message.model';
 import {ChatMessages} from '../chat/chat-messages/chat-messages.model';
-import {merge, of, Subject} from 'rxjs';
+import {merge, Observable, of, Subject} from 'rxjs';
 import {switchMap, tap} from 'rxjs/internal/operators';
+
+class ChatEvent {
+  constructor(
+    data: ChatMessages[],
+    event: 'many' | 'one'
+  ) {}
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -21,17 +29,6 @@ export class ChatMessagesService {
         switchMap((obj: any) => this.onMessage(obj))
       )
     );
-    //
-    // return this.websocketService.listen('receive_chat').pipe(
-    //   tap((obj: any) => {
-    //     if (Array.isArray(obj)) {
-    //       this.onMessages(obj);
-    //     } else {
-    //       this.onMessage(obj);
-    //     }
-    //   }),
-    //   switchMap(() => of(this.data))
-    // );
   }
 
   private addMessage(obj: ChatMessage, arr: ChatMessage[]) {
@@ -41,7 +38,7 @@ export class ChatMessagesService {
     return arr.sort((a, b) => new Date(a.time).valueOf() - new Date(b.time).valueOf());
   }
 
-  private onMessage(obj: ChatMessage) {
+  private onMessage(obj: ChatMessage): Observable<ChatEvent> {
     if (obj) {
       let was = false;
       this.data.forEach(item => {
@@ -57,10 +54,10 @@ export class ChatMessagesService {
         });
       }
     }
-    return of(this.data);
+    return of({data: this.data, event: 'one'});
   }
 
-  private onMessages(obj: ChatMessage[]) {
+  private onMessages(obj: ChatMessage[]): Observable<ChatEvent> {
     if (obj && obj[0] && obj[0].chatId) {
       let was = false;
       this.data.forEach(item => {
@@ -78,6 +75,6 @@ export class ChatMessagesService {
         });
       }
     }
-    return of(this.data);
+    return of({data: this.data, event: 'many'});
   }
 }

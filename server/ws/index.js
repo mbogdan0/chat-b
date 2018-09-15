@@ -24,8 +24,3 @@ module.exports = io => {
 
   });
 };
-
-
-
-//socket.broadcast.emit('online-contacts', 'hello friends!') - dis
-//socket.emit('online-contacts', 'hello friends!')

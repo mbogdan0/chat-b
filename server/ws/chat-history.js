@@ -7,12 +7,6 @@ module.exports = (socket, data, io) => {
   const _skip = +(data.offset || 0);
 
 
-  console.log([    {
-    $limit: _skip + _limit
-  },
-    {
-      $skip: _skip
-    }]);
   Message.aggregate([
     {
       $project: {
