@@ -14,6 +14,7 @@ import {ChatMessages} from './chat-messages.model';
 export class ChatMessagesComponent implements OnInit, OnChanges {
   @Input() contact: Contact;
   public chatID: string;
+  public myId: string;
   public chatMessages: ChatMessages[] = [];
 
   constructor(
@@ -28,7 +29,12 @@ export class ChatMessagesComponent implements OnInit, OnChanges {
   }
   ngOnChanges() {
     if (this.authService.profile && this.contact) {
-      this.chatID = chatId(this.authService.profile._id, this.contact._id);
+      this.myId = this.authService.profile._id;
+      const cid = chatId(this.myId, this.contact._id);
+      if (cid !== this.chatID) {
+        console.log(cid);
+      }
+      this.chatID = cid;
     } else {
       this.chatID = null;
     }

@@ -1,21 +1,17 @@
 
 
-<!--<app-chat-bubble></app-chat-bubble>-->
 
+<div>
 
-
-<ng-container *ngFor="let messages of chatMessages; trackBy: trackByFn">
-  <ng-container *ngIf="messages.chatId == chatID">
-    <ng-container *ngFor="let bubble of messages.data">
-
-      <app-chat-bubble [message]="bubble"></app-chat-bubble>
-
+  <ng-container *ngFor="let messages of chatMessages; trackBy: trackByFn">
+    <ng-container *ngIf="messages.chatId == chatID">
+      <ng-container *ngFor="let bubble of messages.data">
+        <app-chat-bubble
+          [message]="bubble"
+          [uid]="myId"
+        ></app-chat-bubble>
+      </ng-container>
     </ng-container>
   </ng-container>
-</ng-container>
 
-
-<!--
-{ "_id": "5b9bd2724beee73bdf675189", "message": "ad", "owner": "5b96c725c63ac1267137bd84", "receiver": "5b977dce0cdcf62a264ef1ae", "chatId": "f2a43b4b60fbf2b1ac2bd1055c54357f", "time": "2018-09-14T15:23:30.096Z", "__v": 0 }
-
--->
+</div>

@@ -1,50 +1,33 @@
 
-<div class="message-bubble">
-  <div class="bubble">
+<!--<div class="message-bubble">-->
+  <!--<div class="bubble">-->
+    <!--<div class="details">-->
+      <!--Reserve Bot-->
+      <!--<div class="date">-->
+        <!--21:10 PM-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="message">-->
+      <!--Hello-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+
+
+<div class="message-bubble" [ngClass]="{'mine': uid == message.owner._id}">
+  <div class="bubble" [ngClass]="{'mine': uid == message.owner._id}">
     <div class="details">
-      Reserve Bot
+      {{message.owner.username}}
       <div class="date">
-        21:10 PM
+        {{message.time | amLocal | amDateFormat: 'H:mm A'}}
       </div>
     </div>
-    <div class="message">
-      Hello
+    <div class="message" [ngClass]="{'mine': uid == message.owner._id}">
+      {{message.message}}
     </div>
   </div>
 </div>
 
-<div class="message-bubble">
-  <div class="bubble">
-    <div class="details">
-      Reserve Bot
-      <div class="date">
-        21:10 PM
-      </div>
-    </div>
-    <div class="message">
-      Hello
-    </div>
-  </div>
-</div>
-
-
-
-<div class="message-bubble mine">
-  <div class="bubble mine">
-    <div class="details">
-      Reserve Bot
-      <div class="date">
-        21:10 PM
-      </div>
-    </div>
-    <div class="message mine">
-      Hello
-    </div>
-  </div>
-</div>
-<div class="message-seen">
+<div class="message-seen" *ngIf="message?.seenAt">
   <div>Seen at 10:23 PM</div>
 </div>
-
-
-

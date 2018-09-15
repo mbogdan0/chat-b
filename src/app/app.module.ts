@@ -22,6 +22,7 @@ import { SearchingPipe } from './pipes/searching.pipe';
 import { OnlinesPipe } from './pipes/onlines.pipe';
 import {AuthInterceptor} from './services/auth.interceptor';
 import { ChatFormTypingComponent } from './chat/chat-form/chat-form-typing/chat-form-typing.component';
+import { MomentModule } from 'angular2-moment';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { ChatFormTypingComponent } from './chat/chat-form/chat-form-typing/chat-
     ReactiveFormsModule,
     HttpClientModule,
     WebsocketModule,
+    MomentModule
   ],
   providers: [
     {
