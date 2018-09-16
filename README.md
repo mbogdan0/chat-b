@@ -1,7 +1,8 @@
 ## Init project
 
-* `npm install`
-* `npm run init`
+1. `npm install`
+2. `npm run init`
+3. Open browser on `http://localhost:4200/`
 
 ## Development server
 `npm start` - start frontend side
