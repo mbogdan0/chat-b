@@ -1,17 +1,18 @@
 <div class="message-bubble" [ngClass]="{'mine': uid == message.owner._id}">
-  <div class="bubble" [ngClass]="{'mine': uid == message.owner._id}">
+  <div class="bubble" [ngClass]="{'mine': uid == message?.owner._id}">
     <div class="details">
-      {{message.owner.username}}
+      {{message?.owner.username}}
       <div class="date">
         {{message.time | amLocal | amDateFormat: 'H:mm A'}}
       </div>
     </div>
-    <div class="message" [ngClass]="{'mine': uid == message.owner._id}">
+    <div class="message" [ngClass]="{'mine': uid == message?.owner._id}">
       {{message.message}}
     </div>
   </div>
 </div>
 
-<div class="message-seen" *ngIf="last && uid == message.owner._id && message?.seenAt">
+
+<div class="message-seen" *ngIf="last && uid == message?.owner._id && message?.seenAt">
   <div>Seen at {{message.seenAt | amLocal | amDateFormat: 'H:mm A'}}</div>
 </div>

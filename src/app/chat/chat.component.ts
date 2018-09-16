@@ -1,25 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Contact} from './contacts-box/contact/contact.model';
 import {WebsocketService} from '../websocket';
-import {Observable} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, OnDestroy {
   public selectedContact: Contact;
-  public onlineContacts$: Observable<Contact[]>;
+  public subscription: Subscription;
   public onlineContacts: Contact[];
   private selectFirstContactOnce = false;
   constructor(private wsService: WebsocketService) { }
 
   ngOnInit() {
-    this.onlineContacts$ = this.wsService.listen('online-contacts');
-    this.onlineContacts$.subscribe(data => {
+    this.subscription = this.wsService.listen('online-contacts').subscribe(data => {
       this.onlineContacts = this.selectFirstContact(data);
     });
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
   selectFirstContact(data: Contact[]) {
     if (!this.selectFirstContactOnce && data.length) {

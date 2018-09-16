@@ -23,13 +23,11 @@ export class SignupComponent {
     private router: Router,
     private websocketService: WebsocketService
   ) {
-
     this.registerForm = this.fb.group({
       email: ['', [<any>Validators.required, <any>Validators.email]],
       username: ['', [<any>Validators.required]],
       password: ['', [<any>Validators.required]]
     }, { });
-
   }
 
   onSubmit() {
@@ -40,6 +38,7 @@ export class SignupComponent {
       ).subscribe(() => {
         this.websocketService.init();
         this.router.navigate(['/']);
+        location.href = '/';
       }, err => {
         if (err.error && err.error.message) {
           this.errorMsg = err.error.message;

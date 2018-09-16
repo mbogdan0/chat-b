@@ -12,6 +12,7 @@ const fillBots = async () => {
     }
   }
   makeBotsOnline();
+  return true;
 };
 
 const makeBotsOnline = () => {

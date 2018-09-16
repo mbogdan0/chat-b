@@ -7,9 +7,8 @@ module.exports = async (socket, obj) => {
 
   try {
     const my = await botMessage({message: origMessage, owner: uid, receiver: bid});
-    const bot = await botMessage({message: origMessage, owner: bid, receiver: uid});
-    
     socket.emit('chat_msg', my);
+    const bot = await botMessage({message: origMessage, owner: bid, receiver: uid});
     socket.emit('chat_msg', bot);
   } catch (e) {
     console.error(e);

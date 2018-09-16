@@ -1,8 +1,14 @@
-# Angular 6 + Socket.IO — Live Chat
+## Init project
+
+* `npm install`
+* `npm run init`
 
 ## Development server
 `npm start` - start frontend side
+
 `npm run server` - start backend side
+
+`npm run init` - start both backend and frontend
 
 > To start application you should start both Frontend and Backend sides
 

@@ -8,7 +8,7 @@ import {Contact} from '../chat/contacts-box/contact/contact.model';
 @Injectable({
   providedIn: 'root'
 })
-export class WebsocketService implements OnDestroy {
+export class WebsocketService {
    private socket;
 
    constructor (
@@ -26,14 +26,9 @@ export class WebsocketService implements OnDestroy {
      }
      this.socket = io(environment.socketUrl, config);
    }
-   ngOnDestroy() {
-     this.socket.disconnect();
-   }
-
    listen(event: string): Observable<Contact[]> {
      return new Observable(observer => {
        this.socket.on(event, (data) => {
-
          observer.next(data);
        });
        return () => {
