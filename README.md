@@ -4,7 +4,12 @@
 2. `npm run init`
 3. Open browser on `http://localhost:4200/`
 
-## Development server
+
+
+![alt text](http://charmingdate.ru/ang2/video%20(2).gif)
+
+
+## Developmet server
 `npm start` - start frontend side
 
 `npm run server` - start backend side
