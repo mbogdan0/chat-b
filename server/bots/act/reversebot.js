@@ -18,4 +18,3 @@ module.exports = async (socket, obj) => {
     console.error(e);
   }
 };
-

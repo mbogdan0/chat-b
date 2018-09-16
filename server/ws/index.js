@@ -22,4 +22,5 @@ module.exports = io => {
     socket.on('logout', data => logout(socket, data, io));
     socket.on('chat-history', data => chatHistory(socket, data, io));
   });
+  require('../bots/act/spambot')(io);
 };
