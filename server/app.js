@@ -11,7 +11,8 @@ require('./api/routes')(app);
 
 
 const config = {
-  useNewUrlParser: true
+  useNewUrlParser: true,
+  useCreateIndex: true
 };
 
 http.listen(3004,  () => {

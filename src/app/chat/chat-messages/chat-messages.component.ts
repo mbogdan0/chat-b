@@ -71,6 +71,6 @@ export class ChatMessagesComponent implements OnInit, OnChanges {
   scrollDown() {
     setTimeout(() => {
       this.chatEl.nativeElement.scrollTop = this.chatEl.nativeElement.scrollHeight;
-    }, 150);
+    }, 50);
   }
 }

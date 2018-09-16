@@ -21,6 +21,5 @@ module.exports = io => {
     socket.on('chat', data => chat(socket, data, io));
     socket.on('logout', data => logout(socket, data, io));
     socket.on('chat-history', data => chatHistory(socket, data, io));
-
   });
 };

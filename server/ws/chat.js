@@ -6,6 +6,10 @@ const User = require('../models/user');
 module.exports = (socket, data, io) => {
   const sender = OnlineUsers.uidBySockId(socket.id);
   const receiver = OnlineUsers.sockIdByUid(data.contact._id);
+  if (!sender) {
+    return false;
+  }
+
   if (data.contact.isBot) {
     botAct(socket, {sender, receiver, data});
   } else {

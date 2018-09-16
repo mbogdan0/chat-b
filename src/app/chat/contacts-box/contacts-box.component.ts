@@ -9,7 +9,7 @@ import {WebsocketService} from '../../websocket';
   templateUrl: './contacts-box.component.html',
   styleUrls: ['./contacts-box.component.scss']
 })
-export class ContactsBoxComponent {
+export class ContactsBoxComponent implements OnChanges {
   @Input() contacts: Contact[];
   @Output() selectContact = new EventEmitter<Contact>();
   public onlineOnly = true;
@@ -18,6 +18,14 @@ export class ContactsBoxComponent {
     private authService: AuthService,
     private websocketService: WebsocketService
   ) { }
+  ngOnChanges() {
+     if (this.contacts) {
+       const selected = this.contacts.find((el) => el.active === true);
+       if (selected) {
+         this.loadChatHistory(selected._id);
+       }
+     }
+  }
   makeActive(id: string) {
     const contacts = this.contacts.slice(0);
     contacts.forEach((item: Contact) => {

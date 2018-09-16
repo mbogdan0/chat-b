@@ -11,7 +11,9 @@ module.exports = async (socket, obj) => {
     const bot = await botMessage({message: botMsg, owner: bid, receiver: uid});
 
     socket.emit('chat_msg', my);
-    socket.emit('chat_msg', bot);
+    setTimeout(() => {
+      socket.emit('chat_msg', bot);
+    }, 3000);
   } catch (e) {
     console.error(e);
   }

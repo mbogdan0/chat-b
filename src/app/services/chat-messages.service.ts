@@ -5,13 +5,6 @@ import {ChatMessages} from '../chat/chat-messages/chat-messages.model';
 import {merge, Observable, of, Subject} from 'rxjs';
 import {switchMap, tap} from 'rxjs/internal/operators';
 
-class ChatEvent {
-  constructor(
-    data: ChatMessages[],
-    event: 'many' | 'one'
-  ) {}
-}
-
 
 @Injectable({
   providedIn: 'root'
@@ -77,4 +70,11 @@ export class ChatMessagesService {
     }
     return of({data: this.data, event: 'many'});
   }
+}
+
+class ChatEvent {
+  constructor(
+    data: ChatMessages[],
+    event: 'many' | 'one'
+  ) {}
 }
