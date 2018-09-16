@@ -30,13 +30,19 @@ export class ChatMessagesComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.chatMessagesService.listenMessages()
-      .subscribe((chatEvent: { data: ChatMessages[], event: 'many' | 'one' }) => {
+      .subscribe((chatEvent: { data: ChatMessages[], event: 'many' | 'one', chatId: string }) => {
       this.chatMessages = chatEvent.data;
       if (chatEvent.event === 'one') {
-        this.scrollDown();
+        if (chatEvent.chatId === this.chatID) {
+          this.scrollDown();
+          this.makeRead();
+        }
       } else if (chatEvent.event === 'many' && this.firstScroll) {
         this.firstScroll = false;
         this.scrollDown();
+        if (chatEvent.chatId === this.chatID) {
+          this.makeRead();
+        }
       }
     });
   }
@@ -63,6 +69,13 @@ export class ChatMessagesComponent implements OnInit, OnChanges {
       chatId: this.chatID,
       offset: this.offset,
       limit: this.limit
+    });
+  }
+  makeRead() {
+    console.log(this.chatID, 'make read');
+    this.websocketService.send('make-read', {
+      chatId: this.chatID,
+      myId: this.myId
     });
   }
   trackByFn(index, item) {

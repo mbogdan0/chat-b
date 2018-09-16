@@ -10,10 +10,11 @@
 
   <ng-container *ngFor="let messages of chatMessages; trackBy: trackByFn">
     <ng-container *ngIf="messages.chatId == chatID">
-      <ng-container *ngFor="let bubble of messages.data">
+      <ng-container *ngFor="let bubble of messages.data; let last = last">
         <app-chat-bubble
           [message]="bubble"
           [uid]="myId"
+          [last]="last"
         ></app-chat-bubble>
       </ng-container>
     </ng-container>

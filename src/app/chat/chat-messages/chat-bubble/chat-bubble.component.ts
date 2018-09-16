@@ -9,6 +9,6 @@ import {ChatMessage} from '../chat-message.model';
 export class ChatBubbleComponent {
   @Input() message: ChatMessage;
   @Input() uid: string;
+  @Input() last: boolean;
   constructor() { }
-
 }

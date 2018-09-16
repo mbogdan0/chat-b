@@ -12,6 +12,6 @@
   </div>
 </div>
 
-<div class="message-seen" *ngIf="message?.seenAt">
-  <div>Seen at 10:23 PM</div>
+<div class="message-seen" *ngIf="last && uid == message.owner._id && message?.seenAt">
+  <div>Seen at {{message.seenAt | amLocal | amDateFormat: 'H:mm A'}}</div>
 </div>

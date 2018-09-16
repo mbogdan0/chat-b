@@ -4,6 +4,7 @@ const typing = require('./typing');
 const chat = require('./chat');
 const logout = require('./logout');
 const chatHistory = require('./chat-history');
+const makeRead = require('./make-read');
 
 module.exports = io => {
   io.on('connection', socket => {
@@ -18,6 +19,7 @@ module.exports = io => {
     });
 
     socket.on('typing', data => typing(socket, data, io));
+    socket.on('make-read', data => makeRead(socket, data, io));
     socket.on('chat', data => chat(socket, data, io));
     socket.on('logout', data => logout(socket, data, io));
     socket.on('chat-history', data => chatHistory(socket, data, io));
