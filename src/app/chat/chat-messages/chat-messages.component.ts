@@ -6,7 +6,6 @@ import chatId from '../../../../server/act/chat-id.js';
 import {ChatMessages} from './chat-messages.model';
 import {WebsocketService} from '../../websocket';
 
-
 @Component({
   selector: 'app-chat-messages',
   templateUrl: './chat-messages.component.html',
@@ -72,7 +71,6 @@ export class ChatMessagesComponent implements OnInit, OnChanges {
     });
   }
   makeRead() {
-    console.log(this.chatID, 'make read');
     this.websocketService.send('make-read', {
       chatId: this.chatID,
       myId: this.myId
